@@ -1,0 +1,22 @@
+<html>
+    <body>
+        <p>Query Results</p>
+
+        <table id='Supplier' style="width:50%">
+
+            {% if result %}
+            <tr>
+                <th>Supplier ID</th>
+                <th>Supplier Name</th>
+            </tr>
+
+            {% for row in result %}
+            <tr>
+                <td>{{ row.SupplierID }}</td>
+                <td>{{ row.SupplierName }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+    </body>
+</html>
