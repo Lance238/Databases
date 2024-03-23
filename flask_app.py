@@ -1,6 +1,7 @@
 
 # A very simple Flask Hello World app for you to get started with...
 
+
 from flask import Flask, render_template, request
 import pymysql
 
@@ -25,9 +26,16 @@ class Database:
         return result
 
     def insert(self, SupplierID, SupplierName):
-        self.cur.execute("INSERT INTO Supplier (SupplierID, SupplierName) VALUES (%s, %s)", (SupplierID, SupplierName))
-        self.con.commit()
-        self.con.close()
+        try:
+            self.cur.execute("INSERT INTO Supplier (SupplierID, SupplierName) VALUES (%s, %s)", (SupplierID, SupplierName))
+            self.con.commit()
+            self.con.close()
+        except pymysql.Error as e:
+            #if e.args[0] == 1062:
+                #return "Duplicate PK!!!"
+                return "Error: " + e.args[1]
+
+
 
         return "OK"
 
@@ -57,6 +65,7 @@ def insert():
 
 
     return render_template('form.html', msg=msg)
+
 
 
 
