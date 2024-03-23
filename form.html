@@ -1,0 +1,15 @@
+<Mhtml>
+    <body>
+        <h1>Supplier Data</h1><br>
+        <form method="POST" actions="">
+            SupplierID <input type = "text" name = "SupplierID" > <br>
+            SupplierName <input type = "text" name = "SupplierName" > <br>
+            <input type = "submit"> <br><br>
+        </form>
+
+        {% if msg %}
+            {{msg}}
+        {% endif %}
+
+    </body>
+</Mhtml>
