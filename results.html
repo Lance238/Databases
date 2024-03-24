@@ -40,7 +40,30 @@
             {% endfor %}
             {% endif %}
         </table>
-        
+
+        <table id='Payment' style="width:50%">
+
+            {% if result3 %}
+            <tr>
+                <th>Payment ID</th>
+                <th>Order ID</th>
+                <th>Payment Date</th>
+                <th>Payment Amount</th>
+                <th>Payment Method</th>
+            </tr>
+
+            {% for row in result3 %}
+            <tr>
+                <td>{{ row.PaymentID }}</td>
+                <td>{{ row.OrderID }}</td>
+                <td>{{ row.PaymentDate }}</td>
+                <td>{{ row.PaymentAmount }}</td>
+                <td>{{ row.PaymentMethod }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+
 
     </body>
 </html>
