@@ -18,5 +18,29 @@
             {% endfor %}
             {% endif %}
         </table>
+
+
+        <table id='Customer' style="width:50%">
+
+            {% if result2 %}
+            <tr>
+                <th>Customer ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+            </tr>
+
+            {% for row in result2 %}
+            <tr>
+                <td>{{ row.CustomerID }}</td>
+                <td>{{ row.Name }}</td>
+                <td>{{ row.Email }}</td>
+                <td>{{ row.Address }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+        
+
     </body>
 </html>
