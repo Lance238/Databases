@@ -31,13 +31,22 @@ class Database:
             self.con.commit()
             self.con.close()
         except pymysql.Error as e:
-            #if e.args[0] == 1062:
                 #return "Duplicate PK!!!"
                 return "Error: " + e.args[1]
 
+        return "OK"
 
+    def customer(self, CustomerID, Name, Email, Address):
+        try:
+            self.cur.execute("INSERT INTO Customer (CustomerID, Name, Email, Address) VALUES (%s, %s, %s, %s)", (CustomerID, Name, Email, Address))
+            self.con.commit()
+            self.con.close()
+        except pymysql.Error as e:
+                #return "Duplicate PK!!!"
+                return "Error: " + e.args[1]
 
         return "OK"
+
 
 
 
@@ -63,8 +72,25 @@ def insert():
         db = Database()
         msg = db.insert(SupplierID, SupplierName)
 
-
     return render_template('form.html', msg=msg)
+
+
+
+@app.route('/customer', methods=['GET', 'POST'])
+def customer():
+    msg = ""
+    if request.method == "POST":
+        data = request.form
+        CustomerID = data['CustomerID']
+        Name = data['Name']
+        Email = data['Email']
+        Address = data['Address']
+
+        db = Database()
+        msg = db.Customer(CustomerID, Name, Email, Address)
+
+    return render_template('customer.html', msg=msg)
+
 
 
 
