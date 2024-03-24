@@ -25,9 +25,11 @@ class Database:
         self.con.close()
         return result
 
+
     def insert(self, SupplierID, SupplierName):
         try:
-            self.cur.execute("INSERT INTO Supplier (SupplierID, SupplierName) VALUES (%s, %s)", (SupplierID, SupplierName))
+            self.cur.execute("INSERT INTO Supplier (SupplierID, SupplierName) VALUES (%s, %s)", (SupplierID, SupplierName
+            ))
             self.con.commit()
             self.con.close()
         except pymysql.Error as e:
@@ -36,7 +38,24 @@ class Database:
 
         return "OK"
 
-    def customer(self, CustomerID, Name, Email, Address):
+
+class CustomerDB:
+    def __init__(self):
+        host = "callumtait78.mysql.pythonanywhere-services.com"
+        user = "callumtait78"
+        pwd = "Lemon10587"
+        db = "callumtait78$GroceryStock"
+
+        self.con = pymysql.connect(host=host, user=user, password = pwd, db=db, cursorclass=pymysql.cursors.DictCursor)
+        self.cur = self.con.cursor()
+
+    def select(self):
+        self.cur.execute("SELECT * FROM Customer")
+        result = self.cur.fetchall()
+        self.con.close()
+        return result
+
+    def Customer(self, CustomerID, Name, Email, Address):
         try:
             self.cur.execute("INSERT INTO Customer (CustomerID, Name, Email, Address) VALUES (%s, %s, %s, %s)", (CustomerID, Name, Email, Address))
             self.con.commit()
@@ -47,9 +66,6 @@ class Database:
 
         return "OK"
 
-
-
-
 @app.route('/')
 def hello_world():
     myvar = 'INFR3810'
@@ -59,7 +75,11 @@ def hello_world():
 def list():
     db = Database()
     result = db.select()
-    return render_template('results.html', result=result)
+
+    cDB = CustomerDB()
+    result2 = cDB.select()
+
+    return render_template('results.html', result=result, result2 = result2)
 
 @app.route('/insert', methods=['GET', 'POST'])
 def insert():
@@ -75,7 +95,6 @@ def insert():
     return render_template('form.html', msg=msg)
 
 
-
 @app.route('/customer', methods=['GET', 'POST'])
 def customer():
     msg = ""
@@ -86,7 +105,7 @@ def customer():
         Email = data['Email']
         Address = data['Address']
 
-        db = Database()
+        db = CustomerDB()
         msg = db.Customer(CustomerID, Name, Email, Address)
 
     return render_template('customer.html', msg=msg)
