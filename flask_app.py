@@ -279,7 +279,7 @@ class OrderItemsDB:
 
     def delete_OrderItems(self, OrderItemsID):
 
-        self.cur.execute("DELETE FROM OrderItems WHERE OrderItemsID = %s", (OrderItemsID, ))
+        self.cur.execute("DELETE FROM OrderItems WHERE OrderItemID = %s", (OrderItemsID, ))
         self.con.commit()
         self.con.close()
 
@@ -300,7 +300,7 @@ class OrderItemsDB:
 
 @app.route('/')
 def hello_world():
-    myvar = 'Grocery Stock'
+    myvar = 'Grocery Stock Database'
     return render_template('index.html', msg=myvar)
 
 
