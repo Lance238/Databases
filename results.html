@@ -1,5 +1,101 @@
 <html>
     <body>
+
+        <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        </head>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Grocery</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+
+          <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Customer
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="http://callumtait78.pythonanywhere.com/customer">Insert</a></li>
+            <li><a class="dropdown-item" href="http://callumtait78.pythonanywhere.com/modifyCustomer">Edit</a></li>
+            <li><a class="dropdown-item" href="#">Show</a></li>
+            <li><a class="dropdown-item" href="http://callumtait78.pythonanywhere.com/deleteCustomer">Delete</a></li>
+
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Orders
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="http://callumtait78.pythonanywhere.com/orders">Insert</a></li>
+            <li><a class="dropdown-item" href="#">Edit</a></li>
+            <li><a class="dropdown-item" href="#">Show</a></li>
+            <li><a class="dropdown-item" href="#">Delete</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Payments
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="#">Insert</a></li>
+            <li><a class="dropdown-item" href="#">Edit</a></li>
+            <li><a class="dropdown-item" href="#">Show</a></li>
+            <li><a class="dropdown-item" href="#">Delete</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Items Ordered
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="#">Insert</a></li>
+            <li><a class="dropdown-item" href="#">Edit</a></li>
+            <li><a class="dropdown-item" href="#">Show</a></li>
+            <li><a class="dropdown-item" href="#">Delete</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Products
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="#">Insert</a></li>
+            <li><a class="dropdown-item" href="#">Edit</a></li>
+            <li><a class="dropdown-item" href="#">Show</a></li>
+            <li><a class="dropdown-item" href="#">Delete</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Supplier
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="#">Insert</a></li>
+            <li><a class="dropdown-item" href="#">Edit</a></li>
+            <li><a class="dropdown-item" href="#">Show</a></li>
+            <li><a class="dropdown-item" href="#">Delete</a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
         <p>Query Results</p>
 
         <table id='Supplier' style="width:50%">
@@ -46,7 +142,6 @@
             {% if result3 %}
             <tr>
                 <th>Payment ID</th>
-                <th>Order ID</th>
                 <th>Payment Date</th>
                 <th>Payment Amount</th>
                 <th>Payment Method</th>
@@ -55,7 +150,6 @@
             {% for row in result3 %}
             <tr>
                 <td>{{ row.PaymentID }}</td>
-                <td>{{ row.OrderID }}</td>
                 <td>{{ row.PaymentDate }}</td>
                 <td>{{ row.PaymentAmount }}</td>
                 <td>{{ row.PaymentMethod }}</td>
@@ -64,6 +158,74 @@
             {% endif %}
         </table>
 
+        <table id='Product' style="width:50%">
+
+            {% if result4 %}
+            <tr>
+                <th>Product ID</th>
+                <th>Supplier(Brand)</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Stock</th>
+            </tr>
+
+            {% for row in result4 %}
+            <tr>
+                <td>{{ row.ProductID }}</td>
+                <td>{{ row.Supplier }}</td>
+                <td>{{ row.ProductName }}</td>
+                <td>{{ row.Price }}</td>
+                <td>{{ row.Stock }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+
+        <table id='Order' style="width:50%">
+
+            {% if result5 %}
+            <tr>
+                <th>Order ID</th>
+                <th>Customer ID</th>
+                <th>Payment ID</th>
+                <th>Order Date</th>
+                <th>Order Price Amount</th>
+            </tr>
+
+            {% for row in result5 %}
+            <tr>
+                <td>{{ row.OrderID }}</td>
+                <td>{{ row.CustomerID }}</td>
+                <td>{{ row.PaymentID }}</td>
+                <td>{{ row.OrderDate }}</td>
+                <td>{{ row.OrderPriceAmount }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+
+        <table id='OrderItems' style="width:50%">
+
+            {% if result6 %}
+            <tr>
+                <th>Order Item ID</th>
+                <th>Order ID</th>
+                <th>Product ID</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+
+            {% for row in result6 %}
+            <tr>
+                <td>{{ row.OrderItemID }}</td>
+                <td>{{ row.OrderID }}</td>
+                <td>{{ row.ProductID }}</td>
+                <td>{{ row.Quantity }}</td>
+                <td>{{ row.Subtotal }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
 
     </body>
 </html>
